@@ -1,7 +1,7 @@
-import { takeLeading } from 'redux-saga/effects'
-import { Actions } from '../store/actions/actionCreators'
-import requestData from './requestData'
+import { all, fork } from 'redux-saga/effects'
+import requestDataWatcher from './requestData'
+import requestActivePageWatcher from './interface'
 
 export default function* rootSaga() {
-    yield takeLeading(Actions.RequestData, requestData)
+    yield all([fork(requestDataWatcher), fork(requestActivePageWatcher)])
 }

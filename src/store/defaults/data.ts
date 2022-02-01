@@ -1,0 +1,1 @@
+export default new Array(Number(process.env.REACT_APP_MAX_RECORD_COUNT))

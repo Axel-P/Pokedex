@@ -1,12 +1,15 @@
 import React, { PureComponent } from 'react'
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { actionsGenerators } from '../store/actions/actionCreators'
+import { Dispatch } from 'redux'
+import { actionsGenerators } from '../store/actions/dataActionCreators'
 
-const mapActionsToProps = {
-    requestData: actionsGenerators.requestData
-}
-class RequestPokemonsButton extends PureComponent<typeof mapActionsToProps>{
+const mapActionsToProps = (dispatch: Dispatch) => ({
+    requestData: () => {
+        dispatch(actionsGenerators.requestData())
+    }
+})
+class RequestPokemonsButton extends PureComponent<ReturnType<typeof mapActionsToProps>>{
     render(): React.ReactNode {
         return <Button variant="primary" onClick={this.props.requestData}>Fetch pokemons</Button>
     }

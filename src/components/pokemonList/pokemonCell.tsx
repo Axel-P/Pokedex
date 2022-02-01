@@ -5,6 +5,10 @@ import { IPokemon } from "../../store/types";
 export default class PokemonCell extends PureComponent<{ data: IPokemon }>{
 
     render(): ReactNode {
-        return <Col lg={12} className="cell">{this.props.data.name}</Col>
+        return <Col lg={12} className="cell">
+            <div className="content">
+                {this.props.data.name}
+            </div>
+        </Col>
     }
 }

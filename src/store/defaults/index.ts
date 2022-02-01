@@ -1,5 +1,7 @@
-const defaultRootState = {
-    data: []
-}
+import dataDefaults from './data'
+import interfaceDefaults from './interface'
 
-export default defaultRootState
+export default {
+    data: dataDefaults,
+    interface: interfaceDefaults
+}

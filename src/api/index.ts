@@ -14,13 +14,9 @@ export function requestRecord(recordName: string) {
     })
 }
 
-export function requestData() {
+export function requestData(offset: number) {
     return axios.request({
         method: 'get',
-        url: 'https://pokeapi.co/api/v2/pokemon',
-        data: {
-            limit: 150,
-            offset: 0
-        }
+        url: `https://pokeapi.co/api/v2/pokemon?limit=${process.env.REACT_APP_PAGE_SIZE}&offset=${offset}`
     })
 }

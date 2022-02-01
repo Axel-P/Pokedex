@@ -14,4 +14,9 @@ export interface IPokemon {
 
 export interface IStore {
     data?: IPokemon[]
+    interface?: {
+        pagination: {
+            active: number
+        }
+    }
 }

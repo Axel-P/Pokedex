@@ -1,13 +1,7 @@
 import createSagaMiddleware from 'redux-saga'
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
+import { createStore, compose, applyMiddleware } from 'redux'
 import rootSaga from '../sagas'
-import rootStore from './rootStore'
-import { IStore } from './types'
-import { ActionTypes } from './actions/actionCreators'
-
-const rootReducer = combineReducers<IStore, ActionTypes>({
-    data: rootStore
-})
+import rootReducer from './reducers'
 
 const sagaMiddleware = createSagaMiddleware()
 const middlewares = applyMiddleware(sagaMiddleware)
