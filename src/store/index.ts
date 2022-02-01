@@ -13,7 +13,7 @@ const sagaMiddleware = createSagaMiddleware()
 const middlewares = applyMiddleware(sagaMiddleware)
 const store = createStore(
     rootReducer,
-  compose(middlewares)
+    compose(middlewares)
 )
 
 sagaMiddleware.run(rootSaga)

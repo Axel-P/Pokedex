@@ -5,7 +5,7 @@ import defaultStore from './defaults'
 
 
 const store: Reducer<IStore['data'] | undefined, ActionTypes> = (store: IStore['data'] = defaultStore.data, action: ActionTypes) => {
-    switch (action.type){
+    switch (action.type) {
         case Actions.RequestDataSuccess:
             store = store.concat(action.data)
     }

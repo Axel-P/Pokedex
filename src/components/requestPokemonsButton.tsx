@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { actionsGenerators } from '../store/actions/actionCreators'
 
 const mapActionsToProps = {
-  requestData: actionsGenerators.requestData
+    requestData: actionsGenerators.requestData
 }
 class RequestPokemonsButton extends PureComponent<typeof mapActionsToProps>{
     render(): React.ReactNode {
