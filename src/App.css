@@ -13,14 +13,62 @@
   padding: 1.5em;
 }
 
+.App .toplevel-container .spotlight,
 .App .toplevel-container .cell .content{
   border: 1px #647180 solid;
   border-radius: 0.3em;
   margin-bottom: 0.5em;
+}
+
+.App .toplevel-container .cell .content{
+  padding: 0 0.3em;
   cursor: pointer;
+  text-transform: capitalize;
+}
+
+.App .toplevel-container .spotlight .header{
+  display: flex;
+  border-bottom: 1px #647180 solid;
+}
+
+.App .toplevel-container .spotlight .header .close{
+  border-top-left-radius: 0.3em;
+  cursor: pointer;
+  padding: 0 0.3em;
+  border-right: 1px #647180 solid;
+}
+
+.App .toplevel-container .spotlight .header .close:hover{
+  background-color: rgb(139, 44, 44);
+}
+
+.App .toplevel-container .spotlight .header .title{
+  flex-grow: 1;
+  text-transform: capitalize;
   padding: 0 0.3em;
 }
 
-.App .toplevel-container .cell .content:hover{
+.App .toplevel-container .spotlight .content{
+  display: flex;
+}
+
+.App .toplevel-container .spotlight .content .rhs{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.App .toplevel-container .spotlight .content .rhs > *{
+  text-transform: capitalize;
+  flex-grow: 1;
+}
+
+.App .toplevel-container .spotlight .content .rhs > *:not(:first-child){
+  padding-left: 1em;
+}
+
+.App .toplevel-container .cell .content:hover,
+.App .toplevel-container .cell .content.active
+{
   background-color: #333a42;
 }

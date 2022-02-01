@@ -15,27 +15,35 @@ function* requestSingleRecord(recordName: string) {
 function* requestData({ data: index }: ReturnType<typeof actionsGenerators.requestData>) {
     try {
 
-        const currentData = (yield select(listDataSelector)) as ReturnType<typeof listDataSelector>
+        const currentData = (yield select(listDataSelector)) as ReturnType<typeof listDataSelector> || []
 
-        if (!currentData || !currentData[index]) {
-            const { data } = yield call(requestDataApi, index)
-
-            const normalizedData: IPokemon[] = []
-            for (let i = 0; i < data?.results?.length; i++) {
+        const { data } = yield call(requestDataApi, index)
+        const normalizedData: IPokemon[] = []
+        let wasDataUpdated = false
+        for (let i = 0; i < data?.results?.length; i++) {
+            const currentDataExpectedIndex = index + i
+            
+            //We're manually validating each record to individually fetch those that could be missing
+            //since we could have sporadic singular data that could be present on the empty parts of the array
+            if (currentData[currentDataExpectedIndex]) {
+                normalizedData.push(currentData[currentDataExpectedIndex])
+            } else {
+                wasDataUpdated = true
                 const record = (yield call(requestSingleRecord, data.results[i].name)) as IPokemon
                 if (record) {
                     normalizedData.push(record)
                 }
             }
+        }
 
-            if (normalizedData.length) {
+        if (normalizedData.length) {
+            if (wasDataUpdated) {
                 yield put(actionsGenerators.requestDataSuccess({ newRecords: normalizedData, index }))
             } else {
-                throw 'No data found!'
+                yield put(actionsGenerators.requestDataCancelled())
             }
         } else {
-            console.log('cancelled!')
-            yield put(actionsGenerators.requestDataCancelled())
+            throw 'No data found!'
         }
 
     } catch (e) {

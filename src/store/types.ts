@@ -1,5 +1,7 @@
 export interface IType {
-    name: string
+    type: {
+        name: string
+    }
 }
 
 type evolution = { canEvolve: true, evolutionName: string } | { canEvolve: false, evolutionName?: never }
@@ -10,6 +12,9 @@ export interface IPokemon {
     name: string
     order: number
     evolution?: evolution
+    sprites: {
+        front_default: string
+    }
 }
 
 export interface IStore {
@@ -17,6 +22,9 @@ export interface IStore {
     interface?: {
         pagination: {
             active: number
+        },
+        spotlight: {
+            activeRecordIndex?: number
         }
     }
 }

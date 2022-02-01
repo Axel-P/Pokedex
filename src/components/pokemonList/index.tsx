@@ -4,24 +4,22 @@ import { connect } from "react-redux"
 import { IStore } from "../../store/types"
 import interfaceSelector, { activeListSelector } from '../../store/selectors/interface'
 import PokemonCell from './pokemonCell'
-import Pagination from './pagination'
 
 const mapStateToProps = (store: IStore) => ({
     listData: activeListSelector(store),
-    activePage: interfaceSelector(store)?.pagination.active || 0
+    activeRecord: interfaceSelector(store)?.spotlight.activeRecordIndex
 })
 
 class PokemonList extends PureComponent<ReturnType<typeof mapStateToProps>> {
 
     render(): ReactNode {
-        return <div className="toplevel-container">
-            <Container fluid>
-                <Row>
-                    {this.props.listData?.map(pokemon => <PokemonCell data={pokemon} key={pokemon.id} />)}
-                </Row>
-                <Pagination />
-            </Container>
-        </div>
+        return <Container fluid className="p-0">
+            <Row>
+                {this.props.listData?.map(pokemon =>
+                    <PokemonCell data={pokemon} key={pokemon.id} active={this.props.activeRecord === pokemon.id - 1} />
+                )}
+            </Row>
+        </Container>
     }
 }
 

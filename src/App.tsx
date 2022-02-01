@@ -5,7 +5,7 @@ import {
 } from 'react-redux'
 import store from './store'
 import RequestPokemonsButton from './components/requestPokemonsButton'
-import PokemonList from './components/pokemonList'
+import DataDisplay from './components/dataDisplay'
 
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <PokemonList />
+          <DataDisplay />
           <RequestPokemonsButton />
         </div>
       </Provider>
