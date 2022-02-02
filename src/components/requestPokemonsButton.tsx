@@ -6,7 +6,7 @@ import { actionsGenerators } from '../store/actions/dataActionCreators'
 
 const mapActionsToProps = (dispatch: Dispatch) => ({
     requestData: () => {
-        dispatch(actionsGenerators.requestData())
+        dispatch(actionsGenerators.listData.requestData())
     }
 })
 class RequestPokemonsButton extends PureComponent<ReturnType<typeof mapActionsToProps>>{

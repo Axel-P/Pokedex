@@ -4,14 +4,16 @@ export interface IType {
     }
 }
 
-type evolution = { canEvolve: true, evolutionName: string } | { canEvolve: false, evolutionName?: never }
+type evolutionTree =
+    { hasEvolutionTree: true, previousStageName?: string, nextStageName?: string } |
+    { hasEvolutionTree: false, previousStageName?: never, nextStageName?: never }
 
 export interface IPokemon {
     id: number
     types: IType[]
     name: string
     order: number
-    evolution?: evolution
+    evolutionTree?: evolutionTree
     sprites: {
         front_default: string
     }
@@ -21,10 +23,11 @@ export interface IStore {
     data?: IPokemon[]
     interface?: {
         pagination: {
-            active: number
+            active: number,
+            loading: boolean
         },
         spotlight: {
-            activeRecordIndex?: number
+            activeRecord?: IPokemon
         }
     }
 }

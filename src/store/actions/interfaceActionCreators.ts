@@ -1,3 +1,5 @@
+import { IPokemon } from "../types"
+
 export enum Actions {
     RequestActivePage = 'REQUEST_ACTIVE_PAGE',
     SetActivePage = 'SET_ACTIVE_PAGE',
@@ -9,8 +11,8 @@ export enum Actions {
 export type ActionTypes =
     { type: Actions.RequestActivePage, data: number } |
     { type: Actions.SetActivePage, data: number } |
-    { type: Actions.RequestSpotlight, data?: number } |
-    { type: Actions.RequestSpotlightSuccess } |
+    { type: Actions.RequestSpotlight, data?: string } |
+    { type: Actions.RequestSpotlightSuccess, data?: IPokemon } |
     { type: Actions.RequestSpotlightFailure, error: unknown }
 
 function requestActivePage(data: number) {
@@ -21,12 +23,12 @@ function setActivePage(data: number) {
     return { type: Actions.SetActivePage, data }
 }
 
-function requestSpotlight(data?: number) {
+function requestSpotlight(data?: string) {
     return { type: Actions.RequestSpotlight, data }
 }
 
-function requestSpotlightSuccess() {
-    return { type: Actions.RequestSpotlightSuccess }
+function requestSpotlightSuccess(data?: IPokemon) {
+    return { type: Actions.RequestSpotlightSuccess, data }
 }
 
 function requestSpotlightFailure(error: unknown) {

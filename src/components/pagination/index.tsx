@@ -11,7 +11,8 @@ const mapActionsToProps = {
 }
 
 const mapStateToProps = (store: IStore) => ({
-    activePage: interfaceSelector(store)?.pagination.active || 0
+    activePage: interfaceSelector(store)?.pagination.active || 0,
+    isLoading: interfaceSelector(store)?.pagination.loading
 })
 
 const items: number[] = []
@@ -25,9 +26,15 @@ class PaginationControl extends PureComponent<ReturnType<typeof mapStateToProps>
     render(): React.ReactNode {
         return <Row className="justify-content-md-end">
             <Col md="auto">
-                <Pagination>
+                <Pagination className='disabled'>
                     {items.map(item => {
-                        return <PaginationItem value={item} onClick={this.props.requestActivePage} active={item === this.props.activePage} key={item}>
+                        return <PaginationItem
+                            value={item}
+                            onClick={this.props.requestActivePage}
+                            active={item === this.props.activePage}
+                            key={item}
+                            disabled={this.props.isLoading}
+                        >
                             {item + 1}
                         </PaginationItem>
                     })}

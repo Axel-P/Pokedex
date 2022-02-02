@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 import { IStore } from '../types'
-import dataSelector from './allData'
+import dataSelector from './data'
 
 const interfaceSelector = (store: IStore) => store.interface
 

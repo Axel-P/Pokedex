@@ -17,7 +17,7 @@ class PokemonCell extends PureComponent<IDownstreamProps & typeof mapActionsToPr
 
     requestSpotlight = () => {
         if (!this.props.active) {
-            this.props.requestSpotlight(this.props.data.id - 1)
+            this.props.requestSpotlight(this.props.data.name)
         } else {
             this.props.requestSpotlight(undefined)
         }

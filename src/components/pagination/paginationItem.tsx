@@ -4,6 +4,7 @@ import { Pagination } from 'react-bootstrap'
 class PaginationItem extends PureComponent<{
     value: number,
     active?: boolean,
+    disabled?: boolean,
     onClick: (value: number) => void
 }> {
 
@@ -12,7 +13,7 @@ class PaginationItem extends PureComponent<{
     }
 
     render(): React.ReactNode {
-        return <Pagination.Item active={this.props.active} onClick={this.onClickHandler}>
+        return <Pagination.Item active={this.props.active} onClick={this.onClickHandler} disabled={this.props.disabled}>
             {this.props.children}
         </Pagination.Item>
     }

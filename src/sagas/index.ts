@@ -1,5 +1,5 @@
 import { all, fork } from 'redux-saga/effects'
-import requestDataWatcher from './requestData'
+import requestDataWatcher from './data'
 import requestActivePageWatcher from './interface'
 
 export default function* rootSaga() {

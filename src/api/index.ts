@@ -20,3 +20,17 @@ export function requestData(offset: number) {
         url: `${process.env.REACT_APP_API}/pokemon?limit=${process.env.REACT_APP_PAGE_SIZE}&offset=${offset}`
     })
 }
+
+export function requestLinkedData(dataID: number) {
+    return axios.request({
+        method: 'get',
+        url: `${process.env.REACT_APP_API}/pokemon-species/${dataID}`
+    })
+}
+
+export function requestURL(URL: string) {
+    return axios.request({
+        method: 'get',
+        url: URL
+    })
+}
